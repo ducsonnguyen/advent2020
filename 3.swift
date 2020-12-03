@@ -11,10 +11,21 @@ import Foundation
 // coordinates in a grid. You make a map (your puzzle input) of the open squares
 // (.) and trees (#) you can see. For example:
 // 
-// ..##.......  #...#...#..  .#....#..#.  ..#.#...#.# .#...##..#.  ..#.##.....
-// .#.#.#....# .#........# #.##...#...  #...##....# .#..#...#.# These aren't the
-// only trees, though; due to something you read about once involving arboreal
-// genetics and biome stability, the same pattern repeats to the right many times:
+// ..##.......
+// #...#...#..
+// .#....#..#.
+// ..#.#...#.#
+// .#...##..#.
+// ..#.##.....
+// .#.#.#....#
+// .#........#
+// #.##...#...
+// #...##....#
+// .#..#...#.#
+// 
+// These aren't the only trees, though; due to something you read about once
+// involving arboreal genetics and biome stability, the same pattern repeats
+// to the right many times:
 // 
 // ..##.........##.........##.........##.........##.........##.......  --->
 // #...#...#..#...#...#..#...#...#..#...#...#..#...#...#..#...#...#..
@@ -26,8 +37,9 @@ import Foundation
 // .#........#.#........#.#........#.#........#.#........#.#........#
 // #.##...#...#.##...#...#.##...#...#.##...#...#.##...#...#.##...#...
 // #...##....##...##....##...##....##...##....##...##....##...##....#
-// .#..#...#.#.#..#...#.#.#..#...#.#.#..#...#.#.#..#...#.#.#..#...#.#  ---> You
-// start on the open square (.) in the top-left corner and need to reach the
+// .#..#...#.#.#..#...#.#.#..#...#.#.#..#...#.#.#..#...#.#.#..#...#.#  --->
+// 
+// You start on the open square (.) in the top-left corner and need to reach the
 // bottom (below the bottom-most row on your map).
 // 
 // The toboggan can only follow a few specific slopes (you opted for a cheaper
@@ -51,9 +63,10 @@ import Foundation
 // .#........#.#........X.#........#.#........#.#........#.#........#
 // #.##...#...#.##...#...#.X#...#...#.##...#...#.##...#...#.##...#...
 // #...##....##...##....##...#X....##...##....##...##....##...##....#
-// .#..#...#.#.#..#...#.#.#..#...X.#.#..#...#.#.#..#...#.#.#..#...#.#  ---> In
-// this example, traversing the map using this slope would cause you to encounter
-// 7 trees.
+// .#..#...#.#.#..#...#.#.#..#...X.#.#..#...#.#.#..#...#.#.#..#...#.#  --->
+//
+// In this example, traversing the map using this slope would cause you to
+// encounter 7 trees.
 // 
 // Starting at the top-left corner of your map and following a slope of right 3
 // and down 1, how many trees would you encounter?
