@@ -37,6 +37,18 @@ import Foundation
 //
 // Of course, your expense report is much larger. Find the two entries that sum
 // to 2020; what do you get if you multiply them together?
+//
+// --- Part Two ---
+// The Elves in accounting are thankful for your help; one of them even offers
+// you a starfish coin they had left over from a past vacation. They offer you a
+// second one if you can find three numbers in your expense report that meet the
+// same criteria.
+//
+// Using the above example again, the three entries that sum to 2020 are 979,
+// 366, and 675. Multiplying them together produces the answer, 241861950.
+//
+// In your expense report, what is the product of the three entries that sum to
+// 2020?
 
 var numbers: [Int] = []
 while let line = readLine() {
@@ -45,13 +57,36 @@ while let line = readLine() {
     }
 }
 
-for x in numbers {
-    let search = 2020 - x
-    // TODO: sorted array; binary search
-    if numbers.contains(search) {
-        print("\(x) * \(search) = \(x * search)")
-        exit(0)
+func findAddends(numbers: [Int], sum: Int, numAddends: Int) -> [Int] {
+    // print("Looking for sum \(sum)")
+    var addends: [Int] = []
+    if numAddends == 1 {
+        if numbers.contains(sum) {
+            addends.append(sum)
+        }
+        return addends
     }
+
+    for index in 0..<numbers.count {
+        let newSum = sum - numbers[index]
+        let newNumAddends = numAddends - 1
+        let foundAddends = findAddends(numbers: numbers,
+            sum: newSum, numAddends: newNumAddends)
+        if foundAddends.count == newNumAddends {
+            addends.append(numbers[index])
+            return addends + foundAddends
+        }
+    }
+
+    return addends
+}
+
+let desiredAddendCount = 3
+let addends = findAddends(numbers: numbers, sum: 2020, numAddends: desiredAddendCount)
+if addends.count == desiredAddendCount {
+    let result = addends.reduce(1) { $0 * $1 }
+    print("\(addends.map({ String($0) }).joined(separator: " * ")) = \(result)")
+    exit(0)
 }
 
 // Nothing was found
