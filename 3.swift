@@ -35,11 +35,12 @@ while let line = readLine() {
     data.append(line.trimmingCharacters(in: .whitespacesAndNewlines))
 }
 
-var product = 1
+var treeCounts: [Int] = []
 for s in slopes {
     let treeCount = checkSlope(map: data, right: s.0, down: s.1)
+    treeCounts.append(treeCount)
     print("\(treeCount) trees passed for slope \(s.0), \(s.1)")
-    product *= treeCount
 }
 
-print("Result: \(product)")
+let multiplicands = treeCounts.map({ String($0) }).joined(separator: " * ")
+print("\(multiplicands) = \(treeCounts.reduce(1, { $0 * $1  }))")
